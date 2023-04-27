@@ -1,0 +1,65 @@
+.Register {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.AuthFormSec {
+  width: 60%;
+  background-color: var(--color1);
+  height: 100%;
+}
+
+
+.AuthForm {
+  width: 40%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.AuthForm form{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.AuthFormInputsGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.AuthFormInputsGroup label {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.AuthFormInputsGroup input,
+.AuthFormInputsGroup select {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 12px;
+  width: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.AuthForm form button {
+    width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+  background-color: var(--color1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.AuthForm form button:hover {
+  background-color: var(--color1);
+}

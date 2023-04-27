@@ -1,0 +1,34 @@
+.Trade {
+	width: 100%;
+    height: 50px;
+}
+
+.Trade td{
+    width: 20%;
+}
+
+.TradesSideSell span{
+    border: 2px solid red;
+    padding: 5px;
+
+}
+.TradesSideBuy span{
+    border: 2px solid green;
+    padding: 5px;
+
+}
+.TradePNL{
+    width: 100px;
+}
+
+.TradePnlPositive{
+    background-color: green;
+}
+
+.TradePnlNegative{
+    background-color: #ffb3b3;
+}
+
+.TradePnlNeutral{
+    background-color: none;
+}
