@@ -13,7 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   font-family: 'Nunito Sans', sans-serif;
-  --color1: #6C9BCF
+  --colorMain:#F5F6F6;
+  --color1: #6C9BCF;
 }
 
 h1,h2,h3,h4,h5,h6{

@@ -25,6 +25,7 @@ BinanceRoute.get("/future/trades", async (req, res) => {
     symbols.push(pair.pair);
   });
   const trades: any = [];
+  const pnlProgress: any = [];
   let totalPNL = 0; // initialize total PNL to 0
   try {
     for (const symbol of symbols) {
@@ -39,11 +40,11 @@ BinanceRoute.get("/future/trades", async (req, res) => {
       );
       await trades.push(...tradesForSymbol);
 
-      // calculate PNL for each trade and add to total PNL
       tradesForSymbol.forEach((trade: any) => {
         if (trade.realizedPnl !== '0') {
           if (trade.realizedPnl !== '0') {
             const pnl = Number(trade.realizedPnl);
+            pnlProgress.push(pnl);
             totalPNL += pnl;
           }
         }
@@ -51,7 +52,7 @@ BinanceRoute.get("/future/trades", async (req, res) => {
     }
 
     console.log(`Total PNL: ${totalPNL}`);
-    res.status(200).json({trades,totalPNL});
+    res.status(200).json({trades,totalPNL,pnlProgress});
   } catch (e) {
     res.status(400).json(e);
   }
