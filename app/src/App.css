@@ -2,5 +2,6 @@
   width: 100vw;
   min-height: 100%;
   background-color: var(--colorMain);
+  /* background-color: rgba(128, 128, 128, 0.2); */
   direction: rtl;
 }

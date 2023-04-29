@@ -22,37 +22,37 @@ ChartJS.register(
 );
 
 const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-
-  scales: {
-    x: {
-      ticks: {
-        display: false,
-      },
-
-      grid: {
-        drawBorder: false,
+    responsive: true,
+    plugins: {
+      legend: {
         display: false,
       },
     },
-    y: {
-      ticks: {
+    scales: {
+      x: {
+        ticks: {
+          display: false,
+        },
+        grid: {
+          drawBorder: false,
+          display: false,
+        },
         display: false,
-        beginAtZero: true,
       },
-      grid: {
-        drawBorder: false,
+      y: {
+        ticks: {
+          display: false,
+          beginAtZero: true,
+        },
+        grid: {
+          drawBorder: false,
+          display: false,
+        },
         display: false,
       },
     },
-  },
+  };
   
-};
 
 function PnlChart({ pnlData }: { pnlData: any }) {
   const cumulativePnl = pnlData.reduce((acc: any, val: any) => {
@@ -68,12 +68,12 @@ function PnlChart({ pnlData }: { pnlData: any }) {
         label: "PNL Progression",
         data: cumulativePnl,
         
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "rgb(98,68,210)",
+        backgroundColor: "rgb(98,68,210)",
       },
     ],
   };
-  return <Line height={80} options={options} data={data} />;
+  return <Line height={80} width={250} options={options} data={data} />;
 }
 
 export default PnlChart;

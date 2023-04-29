@@ -3,3 +3,13 @@
     min-height: 100vh;
 }
 
+.LandingPageWelcome{
+    width: 100%;
+    height: 60vh;
+    /* background-color: white; */
+}
+.LandingPageMainDiv2{
+    width: 100%;
+    height: 60vh;
+    background-color: white;
+}

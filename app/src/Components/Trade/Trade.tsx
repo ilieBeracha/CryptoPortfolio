@@ -23,7 +23,7 @@ function Trade({ trades }: { trades: any }): JSX.Element {
             : "TradesSide TradesSideBuy TradeTd"
         }
       >
-        <span>{trades.side}</span>
+        <button className={trades.side==="BUY"? "TradeSideBtnBuy TradeSideBtn" : "TradeSideBtn TradeSideBtnSell"}>{trades.side}</button>
       </td>
 
       <td className="TradeTd">

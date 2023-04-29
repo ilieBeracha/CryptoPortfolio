@@ -8,23 +8,25 @@ import PnlChart from "../../Components/PnlChart/PnlChart";
 function Dashboard(): JSX.Element {
   const [trades, setTrades] = useState<any>([]);
   const [totalPNL, setTotalPNL] = useState<any>(0);
-  const[pnlProgress, setPnlProgress] = useState<any>([]);
+  const [pnlProgress, setPnlProgress] = useState<any>([]);
 
   useEffect(() => {
     binanceService.getFutureTrades().then((res) => {
       setTrades(res.trades);
       setTotalPNL(res.totalPNL);
-      setPnlProgress(res.pnlProgress)   
+      setPnlProgress(res.pnlProgress);
       console.log(res.pnlProgress);
-         
     });
   }, []);
   return (
     <div className="Dashboard">
       <div className="DashboardRow1">
         <div className="DashboardColRow1 DashboardDiv">
-          PNL: {totalPNL.toFixed(3) + "$"}
           <PnlChart pnlData={pnlProgress} />
+          <div className="pnlUsdDiv">
+            <span>רווח/הפסד</span>
+            <span>{totalPNL.toFixed(3) + "$"}</span>
+          </div>
         </div>
         <div className="DashboardColRow1 DashboardDiv"></div>
         <div className="DashboardColRow1 DashboardDiv"></div>

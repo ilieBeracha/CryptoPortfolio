@@ -5,5 +5,7 @@ export interface UserModel{
     email:string,
     phone:string
     password:string,
-    tradingPairs:any
+    tradingPairs:any,
+    apiKey:string,
+    secretKey:string
 }

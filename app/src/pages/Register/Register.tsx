@@ -11,28 +11,53 @@ import FuturePairsMultiSelect from "../../Components/FuturePairsMultiSelect/Futu
 import { useNavigate } from "react-router-dom";
 
 function Register(): JSX.Element {
-  const { register, handleSubmit } = useForm<UserModel>();
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [apiKey, setApiKey] = useState<string>("");
+  const [secretKey, setSecretKey] = useState<string>("");
+  const [steps, setSteps] = useState<number>(1);
   const dispatch = useDispatch();
   const [futuresPairs, setFuturesPairs] = useState<string[]>([]);
   const [selectedFuturesPairs, setSelectedFuturesPairs] = useState<string[]>(
     []
-  );
-  const Navigate = useNavigate()
+    );
+    const Navigate = useNavigate();
+    const { register, handleSubmit,reset } = useForm<any>();
+
   useEffect(() => {
     binanceService.getFuturesPairs().then((res) => setFuturesPairs(res));
   }, []);
 
+  async function Step2(conf: any) {
+    setApiKey(conf.apikey);
+    setSecretKey(conf.secretkey);
+
+    const data: any = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      password: password,
+      apiKey: apiKey,
+      secretKey: secretKey,
+      tradingPairs: selectedFuturesPairs,
+    };
+
+    await authRegister(data);
+  }
+
   async function authRegister(user: UserModel) {
     console.log(user);
-    user.tradingPairs = selectedFuturesPairs;
-
     try {
       const results = await userService.Register(user);
       if (results.status === 200) {
         console.log(results);
         dispatch(loginRedux(results.data));
         toastAlerts.toastSuccess("good");
-        Navigate('/')
+        Navigate("/");
       }
     } catch (e: any) {
       console.log(e);
@@ -41,53 +66,85 @@ function Register(): JSX.Element {
     }
   }
 
+  async function Step1(personalData: any) {
+    setFirstName(personalData.firstName);
+    setLastName(personalData.lastName);
+    setEmail(personalData.email);
+    setPassword(personalData.password);
+    setPhone(personalData.phone);
+    setSteps(2);
+    reset()
+  }
+
   return (
     <div className="Register">
       <div className="AuthFormSec"></div>
-
       <div className="AuthForm">
-        <form onSubmit={handleSubmit(authRegister)}>
-          <div className="AuthFormInputsGroup">
-            <label htmlFor="">שם פרטי: </label>
-            <input type="text" {...register("firstName", { required: true })} />
-          </div>
-          <div className="AuthFormInputsGroup">
-            <label htmlFor="">שם משפחה: </label>
-            <input type="text" {...register("lastName", { required: true })} />
-          </div>
-          <div className="AuthFormInputsGroup">
-            <label htmlFor="">אימייל: </label>
-            <input type="text" {...register("email", { required: true })} />
-          </div>
-          <div className="AuthFormInputsGroup">
-            <label htmlFor="">מספר פלאפון: </label>
-            <input type="number" {...register("phone", { required: true })} />
-          </div>
-          <div className="AuthFormInputsGroup">
-            <label htmlFor="">סיסמא: </label>
-            <input
-              type="password"
-              {...register("password", { required: true })}
-            />
-          </div>
-
-          <div className="AuthFormInputsGroup">
+        {steps === 1 ? (
+          <form onSubmit={handleSubmit(Step1)}>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">שם פרטי: </label>
+              <input
+                type="text"
+                {...register("firstName", { required: true })}
+              />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">שם משפחה: </label>
+              <input
+                type="text"
+                {...register("lastName", { required: true })}
+              />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">אימייל: </label>
+              <input type="text" {...register("email", { required: true })} />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">מספר פלאפון: </label>
+              <input type="phone" {...register("phone", { required: true })} />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">סיסמא: </label>
+              <input
+                type="password"
+                {...register("password", { required: true })}
+              />
+            </div>
+            {/* <div className="AuthFormInputsGroup">
             <label htmlFor="">מטבעות המסחר שלך: </label>
-            {/* <select {...register("tradingPairs")} multiple>
-              {futuresPairs?.map((pair) => (
-                <option key={pair} value={pair}>
-                  {pair}
-                </option>
-              ))}
-            </select> */}
-
+            
+            
             <FuturePairsMultiSelect
-              pairs={futuresPairs}
-              onPairsChange={setSelectedFuturesPairs}
+            pairs={futuresPairs}
+            onPairsChange={setSelectedFuturesPairs}
             />
-          </div>
-          <button>הרשם</button>
-        </form>
+          </div> */}
+            <button>המשך</button>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit(Step2)}>
+            <div className="AuthFormInputsGroup">
+              <label>מפתח (api key)</label>
+              <input type="text" onChange={(e)=> setApiKey(e.target.value)} />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label>מפתח סודי (Access key)</label>
+              <input type="text"  onChange={(e)=> setSecretKey(e.target.value)}/>
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">מטבעות המסחר שלך: </label>
+
+              <FuturePairsMultiSelect
+                pairs={futuresPairs}
+                onPairsChange={setSelectedFuturesPairs}
+              />
+            </div>
+            <button type="submit" className="">
+              התחל
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

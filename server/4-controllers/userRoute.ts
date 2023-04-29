@@ -13,7 +13,8 @@ export const UserRoute = express.Router();
 
 UserRoute.post("/register", async (req, res) => {
   const user: UserModel = req.body;
-  console.log(user);
+  console.log(user.apiKey);
+  console.log(user.secretKey);
 
   user.password = hashedPassword(user.password);
   try {

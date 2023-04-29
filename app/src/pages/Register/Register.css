@@ -31,14 +31,14 @@
   flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
-}
+} 
 
 .AuthFormInputsGroup label {
   font-size: 13px;
   margin-bottom: 5px;
 }
 
-.AuthFormInputsGroup input,
+ .AuthFormInputsGroup input,
 .AuthFormInputsGroup select {
   border: none;
   border-radius: 5px;
@@ -46,7 +46,7 @@
   font-size: 12px;
   width: 100%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
+} 
 
 .AuthForm form button {
     width: 100%;
