@@ -22,11 +22,13 @@
 }
 
 .TradePnlPositive {
-  background-color: green;
+  /* background-color: green; */
+  color: green;
 }
 
 .TradePnlNegative {
-  background-color: #ffb3b3;
+  /* background-color: #ffb3b3; */
+  color: #f96e8f;
 }
 
 .TradePnlNeutral {

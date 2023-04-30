@@ -57,7 +57,7 @@ function Register(): JSX.Element {
       if (results.status === 200) {
         dispatch(loginRedux(results.data));
         dispatch(setLoader(true))
-        binanceService.getFutureTrades().then((res) => {
+        binanceService.getFutureTradesHistory().then((res) => {
           dispatch(setLoader(false))
           if (res.status === 200) {
             toastAlerts.toastSuccess("good");

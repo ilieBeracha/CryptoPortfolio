@@ -11,7 +11,18 @@ class BinanceService {
     return results;
   }
 
-  async getFutureTrades() {
+  async getFutureTradesFromLastTime() {
+    const token = this.getTokenFromLocalStorage();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const results = (
+      await axios.get(`${BASE_URL}/future/trades/newtrades`, { headers })
+    ).data;
+    return results;
+  }
+
+  async getFutureTradesHistory() {
     const token = this.getTokenFromLocalStorage();
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -33,6 +44,19 @@ class BinanceService {
     return results;
   }
 
+  async getSumOfPnlByMonth() {
+    const token = this.getTokenFromLocalStorage();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const results = (
+      await axios.get(`${BASE_URL}/future/trades/pnlsumbymonth`, {
+        headers,
+      })
+    ).data;
+    return results;
+  }
+
   async getAllTradesPnl() {
     const token = this.getTokenFromLocalStorage();
     const headers = {
@@ -40,8 +64,8 @@ class BinanceService {
     };
     const results = await axios.get(`${BASE_URL}/future/trades/pnlbytrade`, {
       headers,
-      });
-      return results.data;
+    });
+    return results.data;
   }
 
   async getLast30Trades() {

@@ -6,6 +6,8 @@ import { UserModel } from "../../models/UserModel";
 import { userService } from "../../services/UserService";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { setLoader } from "../../app/loaderSlice";
+import { binanceService } from "../../services/BinanceService";
 
 function Login(): JSX.Element {
     const { register, handleSubmit } = useForm<UserModel>();
@@ -16,11 +18,17 @@ function Login(): JSX.Element {
       try {
         const results = await userService.Login(user);
         if (results.status === 200) {
-          console.log(results);
+          dispatch(setLoader(true))
           dispatch(loginRedux(results.data));
-          toastAlerts.toastSuccess("good");
-          Navigate('/')
-
+          binanceService.getFutureTradesFromLastTime().then((res) => {
+            dispatch(setLoader(false))
+            if (res.status === 200) {
+              toastAlerts.toastSuccess("good");
+              Navigate("/");
+            } else {
+              toastAlerts.toastError(res.data);
+            }
+          });
         }
       } catch (e: any) {
         console.log(e);

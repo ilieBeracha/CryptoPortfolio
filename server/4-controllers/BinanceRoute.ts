@@ -7,7 +7,9 @@ import {
   getAllTradesPnl,
   getLastMonthTradesByUserId,
   getSumOfPnl,
+  getSumOfPnlByMonth,
   saveUserTrades,
+  saveUserTradesFromLastTime,
 } from "../3-logic/BinanceLogic";
 dotenv.config();
 
@@ -32,11 +34,33 @@ BinanceRoute.get("/future/trades/history", async (req, res) => {
   }
 });
 
+BinanceRoute.get("/future/trades/newtrades", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await getIdFromToken(token);
+    const results = await saveUserTradesFromLastTime(Number(userId));
+    res.status(200).json(results);
+  } catch (e) {
+    res.status(401).json(e);
+  }
+});
+
 BinanceRoute.get("/future/trades/pnlsum", async (req, res) => {
   try {
     const token = req.headers.authorization;
     const userId = await getIdFromToken(token);
     const results = await getSumOfPnl(Number(userId));
+    res.status(200).json(results);
+  } catch (e) {
+    res.status(401).json(e);
+  }
+});
+
+BinanceRoute.get("/future/trades/pnlsumbymonth", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await getIdFromToken(token);
+    const results = await getSumOfPnlByMonth(Number(userId));
     res.status(200).json(results);
   } catch (e) {
     res.status(401).json(e);

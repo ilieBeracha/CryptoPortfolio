@@ -13,7 +13,7 @@
 .DashboardDiv {
   background-color: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .DashboardRow1 {
@@ -48,27 +48,33 @@
 .DashboardCol1Row2 {
   width: 65%;
   height: 100%;
-  direction: ltr;
+  /* direction: ltr; */
   overflow-y: auto;
   box-sizing: border-box;
   padding: 0 10px;
 }
 
-.DashboardCol1Row2 table {
+.DashboardCol1Row2 table,
+ .DashboardCol2Row2 table {
   width: 100%;
   box-sizing: border-box;
   padding: 5px;
 }
 
-.DashboardCol1Row2 table th {
-  text-align: left;
-  /* color: var(--color1); */
+
+.DashboardCol1Row2 table th,
+.DashboardCol2Row2 table th {
+  text-align: right;
   color: rgb(98,68,210);
 }
 
 .DashboardCol2Row2 {
+  overflow-y: auto;
   width: 30%;
   height: 100%;
+  /* direction: ltr; */
+  box-sizing: border-box;
+  padding: 0 10px;
 }
 
 .DashboardRow3 {

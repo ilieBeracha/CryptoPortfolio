@@ -1,0 +1,13 @@
+.MonthlyPnl {
+  width: 100%;
+  height: 50px;
+}
+
+.MonthlyPnl td {
+  width: 30%;
+  font-size: 14px;
+}
+
+.MonthlyPnlImage img{
+    width: 20px;
+}
