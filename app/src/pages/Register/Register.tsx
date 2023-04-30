@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { binanceService } from "../../services/BinanceService";
 import FuturePairsMultiSelect from "../../Components/FuturePairsMultiSelect/FuturePairsMultiSelect";
 import { useNavigate } from "react-router-dom";
+import { setLoader } from "../../app/loaderSlice";
 
 function Register(): JSX.Element {
   const [firstName, setFirstName] = useState<string>("");
@@ -23,9 +24,9 @@ function Register(): JSX.Element {
   const [futuresPairs, setFuturesPairs] = useState<string[]>([]);
   const [selectedFuturesPairs, setSelectedFuturesPairs] = useState<string[]>(
     []
-    );
-    const Navigate = useNavigate();
-    const { register, handleSubmit,reset } = useForm<any>();
+  );
+  const Navigate = useNavigate();
+  const { register, handleSubmit, reset } = useForm<any>();
 
   useEffect(() => {
     binanceService.getFuturesPairs().then((res) => setFuturesPairs(res));
@@ -54,10 +55,17 @@ function Register(): JSX.Element {
     try {
       const results = await userService.Register(user);
       if (results.status === 200) {
-        console.log(results);
         dispatch(loginRedux(results.data));
-        toastAlerts.toastSuccess("good");
-        Navigate("/");
+        dispatch(setLoader(true))
+        binanceService.getFutureTrades().then((res) => {
+          dispatch(setLoader(false))
+          if (res.status === 200) {
+            toastAlerts.toastSuccess("good");
+            Navigate("/");
+          } else {
+            toastAlerts.toastError(res.data);
+          }
+        });
       }
     } catch (e: any) {
       console.log(e);
@@ -73,45 +81,52 @@ function Register(): JSX.Element {
     setPassword(personalData.password);
     setPhone(personalData.phone);
     setSteps(2);
-    reset()
+    reset();
   }
 
   return (
     <div className="Register">
-      <div className="AuthFormSec"></div>
-      <div className="AuthForm">
-        {steps === 1 ? (
-          <form onSubmit={handleSubmit(Step1)}>
-            <div className="AuthFormInputsGroup">
-              <label htmlFor="">שם פרטי: </label>
-              <input
-                type="text"
-                {...register("firstName", { required: true })}
-              />
-            </div>
-            <div className="AuthFormInputsGroup">
-              <label htmlFor="">שם משפחה: </label>
-              <input
-                type="text"
-                {...register("lastName", { required: true })}
-              />
-            </div>
-            <div className="AuthFormInputsGroup">
-              <label htmlFor="">אימייל: </label>
-              <input type="text" {...register("email", { required: true })} />
-            </div>
-            <div className="AuthFormInputsGroup">
-              <label htmlFor="">מספר פלאפון: </label>
-              <input type="phone" {...register("phone", { required: true })} />
-            </div>
-            <div className="AuthFormInputsGroup">
-              <label htmlFor="">סיסמא: </label>
-              <input
-                type="password"
-                {...register("password", { required: true })}
-              />
-            </div>
-            {/* <div className="AuthFormInputsGroup">
+     
+          <div className="AuthFormSec"></div>
+          <div className="AuthForm">
+            {steps === 1 ? (
+              <form onSubmit={handleSubmit(Step1)}>
+                <div className="AuthFormInputsGroup">
+                  <label htmlFor="">שם פרטי: </label>
+                  <input
+                    type="text"
+                    {...register("firstName", { required: true })}
+                  />
+                </div>
+                <div className="AuthFormInputsGroup">
+                  <label htmlFor="">שם משפחה: </label>
+                  <input
+                    type="text"
+                    {...register("lastName", { required: true })}
+                  />
+                </div>
+                <div className="AuthFormInputsGroup">
+                  <label htmlFor="">אימייל: </label>
+                  <input
+                    type="text"
+                    {...register("email", { required: true })}
+                  />
+                </div>
+                <div className="AuthFormInputsGroup">
+                  <label htmlFor="">מספר פלאפון: </label>
+                  <input
+                    type="phone"
+                    {...register("phone", { required: true })}
+                  />
+                </div>
+                <div className="AuthFormInputsGroup">
+                  <label htmlFor="">סיסמא: </label>
+                  <input
+                    type="password"
+                    {...register("password", { required: true })}
+                  />
+                </div>
+                {/* <div className="AuthFormInputsGroup">
             <label htmlFor="">מטבעות המסחר שלך: </label>
             
             
@@ -120,32 +135,38 @@ function Register(): JSX.Element {
             onPairsChange={setSelectedFuturesPairs}
             />
           </div> */}
-            <button>המשך</button>
-          </form>
-        ) : (
-          <form onSubmit={handleSubmit(Step2)}>
-            <div className="AuthFormInputsGroup">
-              <label>מפתח (api key)</label>
-              <input type="text" onChange={(e)=> setApiKey(e.target.value)} />
-            </div>
-            <div className="AuthFormInputsGroup">
-              <label>מפתח סודי (Access key)</label>
-              <input type="text"  onChange={(e)=> setSecretKey(e.target.value)}/>
-            </div>
-            <div className="AuthFormInputsGroup">
-              <label htmlFor="">מטבעות המסחר שלך: </label>
+                <button>המשך</button>
+              </form>
+            ) : (
+              <form onSubmit={handleSubmit(Step2)}>
+                <div className="AuthFormInputsGroup">
+                  <label>מפתח (api key)</label>
+                  <input
+                    type="text"
+                    onChange={(e) => setApiKey(e.target.value)}
+                  />
+                </div>
+                <div className="AuthFormInputsGroup">
+                  <label>מפתח סודי (Access key)</label>
+                  <input
+                    type="text"
+                    onChange={(e) => setSecretKey(e.target.value)}
+                  />
+                </div>
+                <div className="AuthFormInputsGroup">
+                  <label htmlFor="">מטבעות המסחר שלך: </label>
 
-              <FuturePairsMultiSelect
-                pairs={futuresPairs}
-                onPairsChange={setSelectedFuturesPairs}
-              />
-            </div>
-            <button type="submit" className="">
-              התחל
-            </button>
-          </form>
-        )}
-      </div>
+                  <FuturePairsMultiSelect
+                    pairs={futuresPairs}
+                    onPairsChange={setSelectedFuturesPairs}
+                  />
+                </div>
+                <button type="submit" className="">
+                  התחל
+                </button>
+              </form>
+            )}
+          </div>
     </div>
   );
 }

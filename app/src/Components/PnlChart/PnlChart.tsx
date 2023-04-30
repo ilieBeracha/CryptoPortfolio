@@ -22,37 +22,41 @@ ChartJS.register(
 );
 
 const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
     },
-    scales: {
-      x: {
-        ticks: {
-          display: false,
-        },
-        grid: {
-          drawBorder: false,
-          display: false,
-        },
+  },
+  scales: {
+    x: {
+      ticks: {
         display: false,
       },
-      y: {
-        ticks: {
-          display: false,
-          beginAtZero: true,
-        },
-        grid: {
-          drawBorder: false,
-          display: false,
-        },
+      grid: {
+        drawBorder: false,
         display: false,
       },
+      display: false,
     },
-  };
-  
+    y: {
+      ticks: {
+        display: false,
+        beginAtZero: true,
+      },
+      grid: {
+        drawBorder: false,
+        display: false,
+      },
+      display: false,
+    },
+  },
+  elements: {
+    line: {
+      borderWidth: 1,
+    },
+  },
+};
 
 function PnlChart({ pnlData }: { pnlData: any }) {
   const cumulativePnl = pnlData.reduce((acc: any, val: any) => {
@@ -67,7 +71,9 @@ function PnlChart({ pnlData }: { pnlData: any }) {
       {
         label: "PNL Progression",
         data: cumulativePnl,
-        
+        pointRadius: 0.1,
+        pointHoverRadius: 0.1,
+        borderWidth: 1,
         borderColor: "rgb(98,68,210)",
         backgroundColor: "rgb(98,68,210)",
       },

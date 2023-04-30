@@ -9,15 +9,13 @@ function Dashboard(): JSX.Element {
   const [trades, setTrades] = useState<any>([]);
   const [totalPNL, setTotalPNL] = useState<any>(0);
   const [pnlProgress, setPnlProgress] = useState<any>([]);
-
+  
   useEffect(() => {
-    binanceService.getFutureTrades().then((res) => {
-      setTrades(res.trades);
-      setTotalPNL(res.totalPNL);
-      setPnlProgress(res.pnlProgress);
-      console.log(res.pnlProgress);
-    });
+    binanceService.getSumOfPnl().then((res)=> setTotalPNL(res[0].pnl));
+    binanceService.getLast30Trades().then((res) => setTrades(res));
+    binanceService.getAllTradesPnl().then((res) => setPnlProgress(res));
   }, []);
+
   return (
     <div className="Dashboard">
       <div className="DashboardRow1">
@@ -25,7 +23,7 @@ function Dashboard(): JSX.Element {
           <PnlChart pnlData={pnlProgress} />
           <div className="pnlUsdDiv">
             <span>רווח/הפסד</span>
-            <span>{totalPNL.toFixed(3) + "$"}</span>
+            <span style={{direction:"ltr"}}>{totalPNL.toFixed(3)}</span>
           </div>
         </div>
         <div className="DashboardColRow1 DashboardDiv"></div>
