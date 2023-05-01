@@ -6,6 +6,7 @@ class BinanceService {
     const token = localStorage.getItem("token");
     return token;
   }
+
   async getFuturesPairs() {
     const results = (await axios.get(`${BASE_URL}/future/pairs`)).data;
     return results;
@@ -74,6 +75,31 @@ class BinanceService {
       Authorization: `Bearer ${token}`,
     };
     const results = await axios.get(`${BASE_URL}/future/trades/last30`, {
+      headers,
+    });
+    return results.data;
+  }
+
+  async getBestPerformingTradePair() {
+    const token = this.getTokenFromLocalStorage();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const results = await axios.get(
+      `${BASE_URL}/future/trades/bestperforming`,
+      {
+        headers,
+      }
+    );
+    return results.data;
+  }
+
+  async getWinLossStats() {
+    const token = this.getTokenFromLocalStorage();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const results = await axios.get(`${BASE_URL}/future/trades/winloss`, {
       headers,
     });
     return results.data;

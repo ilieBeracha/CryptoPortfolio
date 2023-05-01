@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -79,7 +78,7 @@ function PnlChart({ pnlData }: { pnlData: any }) {
       },
     ],
   };
-  return <Line height={80} width={250} options={options} data={data} />;
+  return <Line height={80} width={250} options={options} data={data} />
 }
 
 export default PnlChart;
