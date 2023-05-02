@@ -263,89 +263,41 @@
   padding: 5px;
 }
 
-/* .DashboardDiv {
-  background-color: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-}
-
-.DashboardRow1 {
-  width: 100%;
-  height: 10%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.DashboardColRow1 {
-  width: 30%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.pnlUsdDiv{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.DashboardRow2 {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.DashboardCol1Row2 {
-  width: 65%;
-  height: 100%;
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-
-.DashboardCol1Row2 table,
- .DashboardCol2Row2 table {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 5px 10px;
-}
 
 
-.DashboardCol1Row2 table th,
-.DashboardCol2Row2 table th {
-  text-align: right;
-  color: rgb(98,68,210);
-}
 
-.DashboardCol2Row2 {
-  overflow-y: auto;
-  width: 30%;
-  height: 100%;
-  box-sizing: border-box;
-}
+@media screen and (max-width: 1200px) {
 
-.DashboardRow3 {
-  width: 100%;
-  height: 40%;
-  display: flex;
-  justify-content: space-between;
 }
-.DashboardColRow3 {
-  width: 30%;
-  height: 100%;
-}
+@media screen and (max-width: 992px) {
+  .DashboardMain{
+    min-height: 150vh;
+  }
+  .DashboardMainPnl{
+    flex-direction: column;
 
-.bestPerformingTradePairDiv{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  }
+  .DashboardMainPnlRow{
+    min-height: 85vh;
+    justify-content: space-around;
+  }
 
-.HeadingTitle{
-  color: rgb(98,68,210);
-  
-} */
+  .DashboardMainTotalPnlDiv{
+    height: auto;
+  }
+
+  .DashboardMainActivityTable table tr td{
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .DashboardMain{
+    width: 100%;
+  }
+.DashboardUserInfo{
+  display: none;
+}
+}
+@media screen and (max-width: 576px) {
+
+}

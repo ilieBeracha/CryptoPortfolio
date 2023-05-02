@@ -103,25 +103,6 @@ function Dashboard(): JSX.Element {
           </div>
         </div>
 
-        {/* <div className="DashboardMainOtherInfo">
-          <div className="bestPerformingTradePair">
-            <div className="bestPerformingTradePairHeading">
-              <span>Best performing trade pair</span>
-            </div>
-
-            <div className="bestPerformingTradePairDiv">
-              {bestPerformingTradePair && (
-                <span>
-                  {bestPerformingTradePair.symbol}{" "}
-                  {bestPerformingTradePair.total_pnl.toFixed(2) + "$"}
-                </span>
-              )}
-            </div>
-          </div>
-
-          <div className="DashboardMainOtherInfo2"></div>
-          <div className="DashboardMainOtherInfo2"></div>
-        </div> */}
       </div>
 
       <div className="DashboardUserInfo">
@@ -161,8 +142,7 @@ function Dashboard(): JSX.Element {
           </div>
           <table>
             <tr className="DashboardUserInfoTradesByMonthTrHeading">
-              <th>YEAR</th>
-              <th>MONTH</th>
+              <th>DATE</th>
               <th>PNL</th>
             </tr>
             {pnlByMonth.map((pnlData: any) => (
