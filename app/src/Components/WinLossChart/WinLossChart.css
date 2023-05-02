@@ -1,7 +1,7 @@
 
 .WinLossChart{
     margin: 0 auto !important;
-    height: 280px !important;
+    /* height: 280px !important; */
     box-sizing: border-box;
     padding-bottom: 10px;
 }

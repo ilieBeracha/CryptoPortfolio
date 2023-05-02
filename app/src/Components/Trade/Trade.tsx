@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { TradesModel } from "../../models/TradesModel";
 import "./Trade.css";
 
@@ -10,6 +11,10 @@ function formatTime(timestamp: number) {
 }
 
 function Trade({ trades }: { trades: any }): JSX.Element {
+
+  useEffect(()=>{
+    console.log(trades)
+  })
   return (
     <tr className="Trade">
       <td className="TradeSymbol TradeTd">
@@ -47,7 +52,7 @@ function Trade({ trades }: { trades: any }): JSX.Element {
             : "TradePNL TradePnlNegative"
         }
       >
-        <span>{trades.realizedPnl}</span>
+        <span>{Number(trades.realizedPnl).toFixed(5)}</span>
       </td>
     </tr>
   );

@@ -5,9 +5,12 @@ import { getIdFromToken } from "../1-dal/jwt";
 import {
   getAllPairsByUserId,
   getAllTradesPnl,
+  getBestPerformingTradePair,
   getLastMonthTradesByUserId,
   getSumOfPnl,
   getSumOfPnlByMonth,
+  getWinLossStats,
+  getfuturesAccountBalance,
   saveUserTrades,
   saveUserTradesFromLastTime,
 } from "../3-logic/BinanceLogic";
@@ -89,55 +92,35 @@ BinanceRoute.get("/future/trades/pnlbytrade", async (req, res) => {
   }
 });
 
-// BinanceRoute.get("/future/trades", async (req, res) => {
-//   const token = req.headers.authorization;
-//   const userId = await getIdFromToken(token);
-//   const binance = await getBinanceKeys(Number(userId));
-//   const pairs: any = await getAllPairsByUserId(Number(userId));
-//   const symbols: any = [];
-//   pairs.map((pair: any) => {
-//     symbols.push(pair.pair);
-//   });
-//   const trades: any = [];
-//   const pnlProgress: any = [];
+BinanceRoute.get("/future/trades/bestperforming", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await getIdFromToken(token);
+    const results = await getBestPerformingTradePair(Number(userId));
+    res.status(200).json(results);
+  } catch (e) {
+    res.status(401).json(e);
+  }
+});
 
-//   const startTimestamp = new Date("2022-05-11T00:00:00Z").getTime();
-//   const endTimestamp = new Date("2022-05-11T23:59:59Z").getTime();
+BinanceRoute.get("/future/trades/winloss", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await getIdFromToken(token);
+    const results = await getWinLossStats(Number(userId));
+    res.status(200).json(results);
+  } catch (e) {
+    res.status(401).json(e);
+  }
+});
 
-//   let totalPNL = 0;
-//   let commission = 0;
-//   try {
-//     for (const symbol of symbols) {
-//       console.log(`Getting trades for symbol ${symbol}`);
-
-//       const tradesForSymbol = await binance.futuresUserTrades({
-//         symbol: symbol,
-//         endTime: new Date().getTime()
-//       });
-
-//       console.log(tradesForSymbol);
-
-//       console.log(
-//         `Received ${tradesForSymbol.length} trades for symbol ${symbol}`
-//       );
-//       await trades.push(...tradesForSymbol);
-
-//       tradesForSymbol.forEach((trade: any) => {
-//         if (trade.realizedPnl !== "0") {
-//           if (trade.realizedPnl !== "0") {
-//             const pnl = Number(trade.realizedPnl);
-//             pnlProgress.push(pnl);
-//             totalPNL += pnl;
-//           }
-//         }
-//         commission += Number(trade.commission);
-//       });
-//     }
-
-//     console.log(`Total PNL: ${totalPNL}`);
-//     console.log(`Total commission: ${commission}`);
-//     res.status(200).json({ trades, totalPNL, pnlProgress });
-//   } catch (e) {
-//     res.status(400).json(e);
-//   }
-// });
+BinanceRoute.get('/future/trades/balances', async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await getIdFromToken(token);
+    const balances =await getfuturesAccountBalance(Number(userId))
+    res.status(200).json(balances);
+  } catch (e) {
+    res.status(401).json(e);
+  }
+});

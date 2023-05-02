@@ -104,6 +104,17 @@ class BinanceService {
     });
     return results.data;
   }
+
+  async getFutureAccountBalances(){
+    const token = this.getTokenFromLocalStorage();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const results = await axios.get(`${BASE_URL}/future/trades/balances`, {
+      headers,
+    });
+    return results.data;
+  }
 }
 
 export const binanceService = new BinanceService();

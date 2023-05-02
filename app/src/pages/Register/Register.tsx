@@ -92,35 +92,35 @@ function Register(): JSX.Element {
             {steps === 1 ? (
               <form onSubmit={handleSubmit(Step1)}>
                 <div className="AuthFormInputsGroup">
-                  <label htmlFor="">שם פרטי: </label>
+                  <label htmlFor="">First name: </label>
                   <input
                     type="text"
                     {...register("firstName", { required: true })}
                   />
                 </div>
                 <div className="AuthFormInputsGroup">
-                  <label htmlFor="">שם משפחה: </label>
+                  <label htmlFor="">Last name: </label>
                   <input
                     type="text"
                     {...register("lastName", { required: true })}
                   />
                 </div>
                 <div className="AuthFormInputsGroup">
-                  <label htmlFor="">אימייל: </label>
+                  <label htmlFor="">Email: </label>
                   <input
                     type="text"
                     {...register("email", { required: true })}
                   />
                 </div>
                 <div className="AuthFormInputsGroup">
-                  <label htmlFor="">מספר פלאפון: </label>
+                  <label htmlFor="">Phone: </label>
                   <input
                     type="phone"
                     {...register("phone", { required: true })}
                   />
                 </div>
                 <div className="AuthFormInputsGroup">
-                  <label htmlFor="">סיסמא: </label>
+                  <label htmlFor="">Password: </label>
                   <input
                     type="password"
                     {...register("password", { required: true })}
@@ -140,21 +140,21 @@ function Register(): JSX.Element {
             ) : (
               <form onSubmit={handleSubmit(Step2)}>
                 <div className="AuthFormInputsGroup">
-                  <label>מפתח (api key)</label>
+                  <label>api key</label>
                   <input
                     type="text"
                     onChange={(e) => setApiKey(e.target.value)}
                   />
                 </div>
                 <div className="AuthFormInputsGroup">
-                  <label>מפתח סודי (Access key)</label>
+                  <label>Access key</label>
                   <input
                     type="text"
                     onChange={(e) => setSecretKey(e.target.value)}
                   />
                 </div>
                 <div className="AuthFormInputsGroup">
-                  <label htmlFor="">מטבעות המסחר שלך: </label>
+                  <label htmlFor="">Your Trading pairs:  </label>
 
                   <FuturePairsMultiSelect
                     pairs={futuresPairs}
@@ -162,7 +162,7 @@ function Register(): JSX.Element {
                   />
                 </div>
                 <button type="submit" className="">
-                  התחל
+                  Start
                 </button>
               </form>
             )}

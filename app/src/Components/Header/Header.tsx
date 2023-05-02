@@ -9,16 +9,15 @@ function Header(): JSX.Element {
       </div>
 
       <nav className="HeaderNav">
-        <a href="#">בית</a>
-        <a href="#">מחירים</a>
-        <a href="#">בלוג</a>
-        <a href="#">אודותינו</a>
+        <a href="#">Home</a>
+        <a href="#">Prices</a>
+        <a href="#">Blog</a>
         {/* <a href="#">LOG IN</a> */}
-        <NavLink to={'/loginpage'}>התחבר</NavLink>
+        <NavLink to={'/loginpage'}>Login</NavLink>
       </nav>
 
       <div className="HeaderAuth">
-        <NavLink to={'/registerpage'}>הרשם</NavLink>
+        <NavLink to={'/registerpage'}>Register</NavLink>
       </div>
     </header>
   );
