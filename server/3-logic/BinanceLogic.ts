@@ -36,7 +36,7 @@ export async function getSumOfPnlByMonth(userId: number) {
 
 export async function getBestPerformingTradePair(userId: number) {
   const query =
-    "SELECT symbol, COUNT(*) as trade_count, SUM(realizedPnl) as total_pnl FROM trades where userId = ? GROUP BY symbol ORDER BY COUNT(*) DESC, SUM(realizedPnl) DESC LIMIT 1;";
+    "SELECT symbol, COUNT(*) as trade_count, SUM(realizedPnl) as total_pnl FROM trades WHERE userId = ? GROUP BY symbol ORDER BY SUM(realizedPnl) DESC LIMIT 1;";
   const [results] = await execute(query, [userId]);
   return results;
 }
@@ -146,11 +146,9 @@ export async function saveUserTrades(userId: number) {
     const oneWeek = 7 * 24 * 60 * 60 * 1000;
     const endTimestamp = new Date().getTime();
 
-    for (const symbol of symbols) {
-      console.log(`Getting trades for symbol ${symbol}`);
-
-      let startTimestamp = new Date("2018-01-01T00:00:00Z").getTime();
-      while (startTimestamp < new Date().getTime()) {
+    let startTimestamp = new Date("2018-01-01T00:00:00Z").getTime();
+    while (startTimestamp < new Date().getTime()) {
+      for (const symbol of symbols) {
         const end = startTimestamp + oneWeek - 1;
         console.log(
           `Fetching trades for ${symbol} between ${startTimestamp} and ${end}`
@@ -183,10 +181,9 @@ export async function saveUserTrades(userId: number) {
           ];
           await execute(query, params);
         }
-        console.log("saved 1 week of trades");
-
-        startTimestamp += oneWeek;
+        console.log(`Saved ${tradesForSymbol.length} trades for ${symbol} from ${startTimestamp} to ${end}`);
       }
+      startTimestamp += oneWeek;
     }
 
     console.log(`Successfully saved user trades to database.`);
@@ -195,3 +192,71 @@ export async function saveUserTrades(userId: number) {
     console.error(`Error saving user trades to database: ${e}`);
   }
 }
+
+
+
+
+
+// export async function saveUserTrades(userId: number) {
+//   const binance = await getBinanceKeys(Number(userId));
+//   try {
+//     const pairs: any = await getAllPairsByUserId(Number(userId));
+//     const symbols: any = [];
+//     pairs.map((pair: any) => {
+//       symbols.push(pair.pair);
+//     });
+
+//     const oneWeek = 7 * 24 * 60 * 60 * 1000;
+//     const endTimestamp = new Date().getTime();
+
+//     for (const symbol of symbols) {
+//       console.log(`Getting trades for symbol ${symbol}`);
+
+//       let startTimestamp = new Date("2018-01-01T00:00:00Z").getTime();
+//       while (startTimestamp < new Date().getTime()) {
+//         const end = startTimestamp + oneWeek - 1;
+//         console.log(
+//           `Fetching trades for ${symbol} between ${startTimestamp} and ${end}`
+//         );
+//         const tradesForSymbol = await binance.futuresUserTrades({
+//           symbol: symbol,
+//           startTime: startTimestamp,
+//           endTime: end,
+//         });
+
+//         console.log(
+//           `Received ${tradesForSymbol.length} trades for symbol ${symbol}`
+//         );
+
+//         for (const trade of tradesForSymbol) {
+//           const query = `
+//             INSERT INTO trades (userId, symbol, orderId, side, price, qty, realizedPnl, commission ,time)
+//             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+//           `;
+//           const params = [
+//             userId,
+//             trade.symbol,
+//             trade.orderId,
+//             trade.side,
+//             trade.price,
+//             trade.qty,
+//             trade.realizedPnl,
+//             trade.commission,
+//             trade.time,
+//           ];
+//           await execute(query, params);
+//         }
+//         console.log(`Saved ${tradesForSymbol.length} trades for ${symbol} from ${startTimestamp} to ${end}`);
+
+//         startTimestamp += oneWeek;
+//       }
+//     }
+
+//     console.log(`Successfully saved user trades to database.`);
+//     return true;
+//   } catch (e) {
+//     console.error(`Error saving user trades to database: ${e}`);
+//   }
+// }
+
+
