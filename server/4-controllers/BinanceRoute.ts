@@ -10,6 +10,7 @@ import {
   getSumOfPnl,
   getSumOfPnlByMonth,
   getWinLossStats,
+  getWorstPerformingTradePair,
   getfuturesAccountBalance,
   saveUserTrades,
   saveUserTradesFromLastTime,
@@ -97,6 +98,17 @@ BinanceRoute.get("/future/trades/bestperforming", async (req, res) => {
     const token = req.headers.authorization;
     const userId = await getIdFromToken(token);
     const results = await getBestPerformingTradePair(Number(userId));
+    res.status(200).json(results);
+  } catch (e) {
+    res.status(401).json(e);
+  }
+});
+
+BinanceRoute.get("/future/trades/worstperforming", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const userId = await getIdFromToken(token);
+    const results = await getWorstPerformingTradePair(Number(userId));
     res.status(200).json(results);
   } catch (e) {
     res.status(401).json(e);

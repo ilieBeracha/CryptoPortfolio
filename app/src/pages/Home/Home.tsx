@@ -24,6 +24,7 @@ function Home(): JSX.Element {
           <HomeNav />
           <Routes>
             <Route path="*" element={<Dashboard />}></Route>
+            <Route path="/settings" element={"settings"}></Route>
           </Routes>
         </>
       )}

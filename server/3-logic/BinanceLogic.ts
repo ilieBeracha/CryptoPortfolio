@@ -41,6 +41,12 @@ export async function getBestPerformingTradePair(userId: number) {
   return results;
 }
 
+export async function getWorstPerformingTradePair(userId: number) {
+  const query = "SELECT symbol, COUNT(*) as trade_count, SUM(realizedPnl) as total_pnl FROM trades WHERE userId = ? GROUP BY symbol ORDER BY SUM(realizedPnl) ASC LIMIT 1;"
+  const [results] = await execute(query, [userId]);
+  return results;
+}
+
 export async function getWinLossStats(userId: number) {
   const query =
     "SELECT COUNT(*) AS total_trades, AVG(realizedPnl) AS avg_profit_loss, SUM(CASE WHEN realizedPnl >= 0 THEN 1 ELSE 0 END) AS total_wins, SUM(CASE WHEN realizedPnl < 0 THEN 1 ELSE 0 END) AS total_losses, (SUM(CASE WHEN realizedPnl >= 0 THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS win_percentage, (SUM(CASE WHEN realizedPnl < 0 THEN 1 ELSE 0 END) / COUNT(*)) * 100 AS loss_percentag FROM trades WHERE userId = ?;";
@@ -57,7 +63,6 @@ export async function getfuturesAccountBalance(userId: number) {
   const binance = await getBinanceKeys(Number(userId));
   const res = await binance.futuresAccountBalance()
   const pairs = res.filter((pair: any) => pair.balance > 0) 
-  console.log(pairs)
   return pairs;
 }
 

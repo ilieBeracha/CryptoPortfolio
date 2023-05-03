@@ -15,7 +15,8 @@ function Dashboard(): JSX.Element {
   const [bestPerformingTradePair, setBestPerformingTradePair] = useState<any>();
   const [winLossStats, setWinLossStats] = useState<any>([]);
   const [futureAccountBalances, setFutureAccountBalances] = useState<any>([]);
-
+  const [worstPerformingTradePair, setWorstPerformingTradePair] =
+    useState<any>();
   const authSlice = useSelector((state: any) => state.auth);
 
   useEffect(() => {
@@ -26,6 +27,9 @@ function Dashboard(): JSX.Element {
       binanceService
         .getBestPerformingTradePair()
         .then((res) => setBestPerformingTradePair(res[0]));
+      binanceService
+        .getWorstPerformingTradePair()
+        .then((res) => setWorstPerformingTradePair(res[0]));
       binanceService.getWinLossStats().then((res) => setWinLossStats(res[0]));
       binanceService.getSumOfPnlByMonth().then((res) => {
         setPnlByMonth(res);
@@ -60,23 +64,28 @@ function Dashboard(): JSX.Element {
               </div>
             </div>
             <div className="DashboardMainBestPerformingTradePair">
-              <span>Best performing</span>
+              <span>Best & Worst performing</span>
 
               <div className="DashboardMainBestPerformingTradePairDiv">
-                {bestPerformingTradePair && (
+                {bestPerformingTradePair && worstPerformingTradePair && (
                   <>
-                    <span>
-                      {bestPerformingTradePair.symbol} <br />
-                    </span>
-                    <span
-                      className={
-                        bestPerformingTradePair.total_pnl > 0
-                          ? "bestPerformingTradePairWin"
-                          : "bestPerformingTradePairLoss"
-                      }
-                    >
-                      {bestPerformingTradePair.total_pnl.toFixed(2) + "$"}
-                    </span>
+                    <div className="Best_WorstPerfomingTradeDiv">
+                      <span>
+                        {bestPerformingTradePair.symbol} <br />
+                      </span>
+                      <span className={"bestPerformingTradePairWin"}>
+                        {bestPerformingTradePair.total_pnl.toFixed(2) + "$"}
+                      </span>
+                    </div>
+
+                    <div className="Best_WorstPerfomingTradeDiv">
+                      <span>
+                        {worstPerformingTradePair.symbol} <br />
+                      </span>
+                      <span className="bestPerformingTradePairLoss">
+                        {worstPerformingTradePair.total_pnl.toFixed(2) + "$"}
+                      </span>
+                    </div>
                   </>
                 )}
               </div>
@@ -102,7 +111,6 @@ function Dashboard(): JSX.Element {
             </table>
           </div>
         </div>
-
       </div>
 
       <div className="DashboardUserInfo">

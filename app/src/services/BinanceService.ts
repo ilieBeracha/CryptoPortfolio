@@ -94,6 +94,20 @@ class BinanceService {
     return results.data;
   }
 
+  async getWorstPerformingTradePair() {
+    const token = this.getTokenFromLocalStorage();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const results = await axios.get(
+      `${BASE_URL}/future/trades/worstperforming`,
+      {
+        headers,
+      }
+    );
+    return results.data;
+  }
+
   async getWinLossStats() {
     const token = this.getTokenFromLocalStorage();
     const headers = {

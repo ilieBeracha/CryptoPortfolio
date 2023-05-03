@@ -12,14 +12,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  font-family: 'Nunito Sans', sans-serif;
-  --colorMain:#F5F6F6;
-  --color1: #6C9BCF;
+  /* font-family: 'Nunito Sans', sans-serif; */
+  font-family: "Nunito Sans", sans-serif;
+  font-family: "Rubik", sans-serif;
+  --colorMain: #f5f6f6;
+  --color1: #6c9bcf;
 
   color: black;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
