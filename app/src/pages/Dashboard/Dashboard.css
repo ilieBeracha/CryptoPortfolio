@@ -7,11 +7,13 @@
   overflow-y: auto;
 }
 
-.Dashboard h1 {
+.Dashboard h1,.Dashboard h3 {
   font-size: 20px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .DashboardMain {
+  height: 80%;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -72,7 +74,7 @@
   align-items: center;
 }
 
-.DashboardMainTotalPnlDiv{
+.DashboardMainTotalPnlDiv {
   width: 95%;
   height: 180px;
   border: 1px solid #8f7cff;
@@ -81,27 +83,27 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-
 .DashboardMainWinLossChartDiv,
 .DashboardMainBestPerformingTradePairDiv {
   width: 80%;
   height: 180px;
   border: 1px solid #8f7cff;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: #f8f7ff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.DashboardMainBestPerformingTradePairDiv{
+.DashboardMainBestPerformingTradePairDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #8f7cff;
+  height: 85px;
   /* flex-direction: column; */
   gap: 10px;
 }
 
-.Best_WorstPerfomingTradeDiv{
+.Best_WorstPerfomingTradeDiv {
   width: 50%;
   height: 100%;
   display: flex;
@@ -110,13 +112,12 @@
   align-items: center;
 }
 
-.bestPerformingTradePairLoss{
+.bestPerformingTradePairLoss {
   color: red;
 }
-.bestPerformingTradePairWin{
+.bestPerformingTradePairWin {
   color: green;
 }
-
 
 .DashboardMainActivityRow {
   width: 100%;
@@ -146,59 +147,9 @@
   font-size: 14px;
 }
 
-/* .DashboardMainOtherInfo {
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  justify-content: space-around;
-}
-
-.bestPerformingTradePair {
-  width: 30%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #f8f7ff;
-  border: 1px solid #8f7cff;
-  border-radius: 5px;
-  box-sizing: border-box;
-  padding: 8px;
-}
-
-.bestPerformingTradePairHeading {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  width: 100%;
-  height: 10%;
-}
-
-.bestPerformingTradePairDiv {
-  width: 100%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: #8f7cff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.DashboardMainOtherInfo2 {
-  width: 30%;
-  height: 100%;
-  display: flex;
-  background-color: #f8f7ff;
-  border: 1px solid #8f7cff;
-  border-radius: 5px;
-} */
-
 .DashboardUserInfoTrader {
   width: 100%;
   height: 50%;
-  /* background-color: aqua; */
-  /* border-bottom: 1px solid #8f7cff; */
   gap: 40px;
 }
 
@@ -209,7 +160,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border-bottom: 1px solid #8f7cff; */
 }
 
 .DashboardUserInfoTraderTrades {
@@ -256,6 +206,7 @@
   color: #8f7cff;
 }
 
+
 .DashboardUserInfoTradesByMonth table {
   width: 100%;
 }
@@ -272,41 +223,37 @@
   padding: 5px;
 }
 
-
-
-
 @media screen and (max-width: 1200px) {
-
 }
 @media screen and (max-width: 992px) {
-  .DashboardMain{
+  .DashboardMain {
     min-height: 150vh;
   }
-  .DashboardMainPnl{
+  .DashboardMainPnl {
     flex-direction: column;
+    gap: 30px;
 
   }
-  .DashboardMainPnlRow{
+  .DashboardMainPnlRow {
     min-height: 85vh;
     justify-content: space-around;
   }
 
-  .DashboardMainTotalPnlDiv{
+  .DashboardMainTotalPnlDiv {
     height: auto;
   }
 
-  .DashboardMainActivityTable table tr td{
+  .DashboardMainActivityTable table tr td {
     font-size: 10px;
   }
 }
 @media screen and (max-width: 768px) {
-  .DashboardMain{
+  .DashboardMain {
     width: 100%;
   }
-.DashboardUserInfo{
-  display: none;
-}
+  .DashboardUserInfo {
+    display: none;
+  }
 }
 @media screen and (max-width: 576px) {
-
 }

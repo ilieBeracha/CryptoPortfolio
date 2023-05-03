@@ -44,7 +44,7 @@ function Dashboard(): JSX.Element {
     <div className="Dashboard">
       <div className="DashboardMain">
         <div className="DashboardMainPnlRow">
-          <h1>Overview</h1>
+          <h3>Overview</h3>
           <div className="DashboardMainPnl">
             <div className="DashboardMainWinLossChart">
               <span>Win/Loss (%)</span>
@@ -77,7 +77,12 @@ function Dashboard(): JSX.Element {
                         {bestPerformingTradePair.total_pnl.toFixed(2) + "$"}
                       </span>
                     </div>
-
+                  </>
+                )}
+              </div>
+              <div className="DashboardMainBestPerformingTradePairDiv">
+                {bestPerformingTradePair && worstPerformingTradePair && (
+                  <>
                     <div className="Best_WorstPerfomingTradeDiv">
                       <span>
                         {worstPerformingTradePair.symbol} <br />
@@ -94,7 +99,7 @@ function Dashboard(): JSX.Element {
         </div>
 
         <div className="DashboardMainActivityRow">
-          <h1>Activity</h1>
+          <h3>Activity</h3>
           <div className="DashboardMainActivityTable">
             <table>
               <tr className="DashboardMainActivityTrHeader">
@@ -122,7 +127,7 @@ function Dashboard(): JSX.Element {
           <div className="DashboardUserInfoTraderTrades">
             <div className="DashboardUserInfoPersonal">
               <span>
-                {authSlice.firstName} {authSlice.lastName}
+                Name:  {authSlice.firstName} {authSlice.lastName}
               </span>
             </div>
 
@@ -146,7 +151,7 @@ function Dashboard(): JSX.Element {
         </div>
         <div className="DashboardUserInfoTradesByMonth">
           <div className="DashboardUserInfoTradesByMonthHeader">
-            <span>Monthly</span>
+            <h3>Monthly PNL</h3>
           </div>
           <table>
             <tr className="DashboardUserInfoTradesByMonthTrHeading">
@@ -165,63 +170,3 @@ function Dashboard(): JSX.Element {
 
 export default Dashboard;
 
-{
-  /* <div className="DashboardRow1">
-        <div className="DashboardColRow1 DashboardDiv">
-          <PnlChart pnlData={pnlProgress} />
-          <div className="pnlUsdDiv">
-            <span className="HeadingTitle">רווח/הפסד</span>
-            <span style={{ direction: "ltr" }}>{totalPNL.toFixed(3)}</span>
-          </div>
-        </div>
-        <div className="DashboardColRow1 DashboardDiv">
-          <div className="bestPerformingTradePairDiv">
-            <span className="HeadingTitle">הצמד המצליח ביותר</span>
-            {bestPerformingTradePair && (
-              <span>
-                {bestPerformingTradePair.symbol}{" "}
-                {bestPerformingTradePair.total_pnl.toFixed(2) + "$"}
-              </span>
-            )}
-          </div>
-        </div>
-        <div className="DashboardColRow1 DashboardDiv"></div>
-      </div>
-
-      <div className="DashboardRow2">
-        <div className="DashboardCol1Row2 DashboardDiv">
-          <table className="DashboardCol1Row2Table">
-            <tr className="DashboardCol1Row2TableHeaderRow">
-              <th>סמל</th>
-              <th>צד</th>
-              <th>זמן</th>
-              <th>כמות</th>
-              <th>מחיר</th>
-              <th>רווח/הפסד</th>
-            </tr>
-            {trades.map((trade: any) => (
-              <Trade key={trade.id} trades={trade} />
-            ))}
-          </table>
-        </div>
-        <div className="DashboardCol2Row2 DashboardDiv">
-          <table className="DashboardCol2Row2Table">
-            <tr className="DashboardCol1Row2TableHeaderRow">
-              <th>שנה</th>
-              <th>חודש</th>
-              <th>רווח/הפסד</th>
-            </tr>
-            {pnlByMonth.map((pnlData: any) => (
-              <MonthlyPnl pnlByMonth={pnlData} />
-            ))}
-          </table>
-        </div>
-      </div>
-      <div className="DashboardRow3">
-        <div className="DashboardColRow3 DashboardDiv">
-          {winLossStats.length!==0?<WinLossChart winLossData={winLossStats}/> : <></>}
-        </div>
-        <div className="DashboardColRow3 DashboardDiv"></div>
-        <div className="DashboardColRow3 DashboardDiv"></div>
-      </div> */
-}

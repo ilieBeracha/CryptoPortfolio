@@ -5,9 +5,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function WinLossChart({winLossData}:{winLossData:any}) {
      const data = {
+      labels: ['Win', 'Loss'],
+
         datasets: [
           {
-            label: "Win/Loss",
+            label: "% is",
             data: [Number(winLossData.win_percentage).toFixed(0) , Number(winLossData.loss_percentag).toFixed(0)],
             backgroundColor: [
               "rgba(54, 162, 235, 0.2)",

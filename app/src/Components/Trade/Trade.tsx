@@ -52,7 +52,7 @@ function Trade({ trades }: { trades: any }): JSX.Element {
             : "TradePNL TradePnlNegative"
         }
       >
-        <span>{Number(trades.realizedPnl).toFixed(5)}</span>
+        <span>{Number(trades.realizedPnl).toFixed(2)}</span>
       </td>
     </tr>
   );
