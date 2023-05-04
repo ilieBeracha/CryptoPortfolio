@@ -55,7 +55,7 @@
 
 .DashboardMainTotalPnlDiv {
   font-size: 20px;
-  color: #8f7cff;
+  color: var(--color1);
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
@@ -78,7 +78,7 @@
 .DashboardMainTotalPnlDiv {
   width: 95%;
   height: 180px;
-  border: 1px solid #8f7cff;
+  border: 1px solid var(--color1);
   border-radius: 5px;
   background-color: #f8f7ff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -88,7 +88,7 @@
 .DashboardMainBestPerformingTradePairDiv {
   width: 80%;
   height: 180px;
-  border: 1px solid #8f7cff;
+  border: 1px solid var(--color1);
   border-radius: 20px;
   background-color: #f8f7ff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -98,7 +98,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #8f7cff;
+  color: var(--color1);
   height: 85px;
   /* flex-direction: column; */
   gap: 10px;
@@ -133,7 +133,7 @@
   width: 90%;
   height: 100%;
   overflow-y: scroll;
-  border: 1px solid #8f7cff;
+  border: 1px solid var(--color1);
   background-color: #f8f7ff;
   border-radius: 5px;
   box-sizing: border-box;
@@ -199,12 +199,10 @@
   padding: 10px;
   overflow-y: auto;
   border-top: 1px solid #ccc;
-  /* background-color: #f8f7ff; */
-  /* background-color: #8f7cff; */
 }
 
 .DashboardUserInfoTradesByMonthTrHeading {
-  color: #8f7cff;
+  color: var(--color1);
 }
 
 

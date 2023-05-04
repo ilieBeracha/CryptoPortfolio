@@ -4,5 +4,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+}
+
+
+.LoaderDiv{
+    margin: auto auto;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* background-color: #ccc; */
+}
+
+.LoaderDiv p {
+    margin: 0;
+}
+
+.LoaderDiv span{
+    font-size: 14px;
+    color: #ccc;
 }
