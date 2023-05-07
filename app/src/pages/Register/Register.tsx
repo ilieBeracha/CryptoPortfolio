@@ -8,7 +8,7 @@ import { toastAlerts } from "../../helpers/toastAlerts";
 import { useEffect, useState } from "react";
 import { binanceService } from "../../services/BinanceService";
 import FuturePairsMultiSelect from "../../Components/FuturePairsMultiSelect/FuturePairsMultiSelect";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { setLoader } from "../../app/loaderSlice";
 
 function Register(): JSX.Element {
@@ -56,9 +56,9 @@ function Register(): JSX.Element {
       const results = await userService.Register(user);
       if (results.status === 200) {
         dispatch(loginRedux(results.data));
-        dispatch(setLoader(true))
+        dispatch(setLoader(true));
         binanceService.getFutureTradesHistory().then((res) => {
-          dispatch(setLoader(false))
+          dispatch(setLoader(false));
           if (res.status === 200) {
             toastAlerts.toastSuccess("good");
             Navigate("/");
@@ -86,47 +86,40 @@ function Register(): JSX.Element {
 
   return (
     <div className="Register">
-     
-          <div className="AuthFormSec"></div>
-          <div className="AuthForm">
-            {steps === 1 ? (
-              <form onSubmit={handleSubmit(Step1)}>
-                <div className="AuthFormInputsGroup">
-                  <label htmlFor="">First name: </label>
-                  <input
-                    type="text"
-                    {...register("firstName", { required: true })}
-                  />
-                </div>
-                <div className="AuthFormInputsGroup">
-                  <label htmlFor="">Last name: </label>
-                  <input
-                    type="text"
-                    {...register("lastName", { required: true })}
-                  />
-                </div>
-                <div className="AuthFormInputsGroup">
-                  <label htmlFor="">Email: </label>
-                  <input
-                    type="text"
-                    {...register("email", { required: true })}
-                  />
-                </div>
-                <div className="AuthFormInputsGroup">
-                  <label htmlFor="">Phone: </label>
-                  <input
-                    type="phone"
-                    {...register("phone", { required: true })}
-                  />
-                </div>
-                <div className="AuthFormInputsGroup">
-                  <label htmlFor="">Password: </label>
-                  <input
-                    type="password"
-                    {...register("password", { required: true })}
-                  />
-                </div>
-                {/* <div className="AuthFormInputsGroup">
+      <div className="AuthFormSec"></div>
+      <div className="AuthForm">
+        {steps === 1 ? (
+          <form onSubmit={handleSubmit(Step1)}>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">First name: </label>
+              <input
+                type="text"
+                {...register("firstName", { required: true })}
+              />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">Last name: </label>
+              <input
+                type="text"
+                {...register("lastName", { required: true })}
+              />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">Email: </label>
+              <input type="text" {...register("email", { required: true })} />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">Phone: </label>
+              <input type="phone" {...register("phone", { required: true })} />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">Password: </label>
+              <input
+                type="password"
+                {...register("password", { required: true })}
+              />
+            </div>
+            {/* <div className="AuthFormInputsGroup">
             <label htmlFor="">מטבעות המסחר שלך: </label>
             
             
@@ -135,38 +128,36 @@ function Register(): JSX.Element {
             onPairsChange={setSelectedFuturesPairs}
             />
           </div> */}
-                <button>המשך</button>
-              </form>
-            ) : (
-              <form onSubmit={handleSubmit(Step2)}>
-                <div className="AuthFormInputsGroup">
-                  <label>api key</label>
-                  <input
-                    type="text"
-                    onChange={(e) => setApiKey(e.target.value)}
-                  />
-                </div>
-                <div className="AuthFormInputsGroup">
-                  <label>Access key</label>
-                  <input
-                    type="text"
-                    onChange={(e) => setSecretKey(e.target.value)}
-                  />
-                </div>
-                <div className="AuthFormInputsGroup">
-                  <label htmlFor="">Your Trading pairs:  </label>
+            <button>המשך</button>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit(Step2)}>
+            <div className="AuthFormInputsGroup">
+              <label>api key</label>
+              <input type="text" onChange={(e) => setApiKey(e.target.value)} />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label>Access key</label>
+              <input
+                type="text"
+                onChange={(e) => setSecretKey(e.target.value)}
+              />
+            </div>
+            <div className="AuthFormInputsGroup">
+              <label htmlFor="">Your Trading pairs: </label>
 
-                  <FuturePairsMultiSelect
-                    pairs={futuresPairs}
-                    onPairsChange={setSelectedFuturesPairs}
-                  />
-                </div>
-                <button type="submit" className="">
-                  Start
-                </button>
-              </form>
-            )}
-          </div>
+              <FuturePairsMultiSelect
+                pairs={futuresPairs}
+                onPairsChange={setSelectedFuturesPairs}
+              />
+            </div>
+            <button type="submit" className="">
+              Start
+            </button>
+          </form>
+        )}
+        <NavLink to={"/loginpage"}>Have an account</NavLink>
+      </div>
     </div>
   );
 }

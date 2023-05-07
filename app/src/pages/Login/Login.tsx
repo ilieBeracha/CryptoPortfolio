@@ -5,7 +5,7 @@ import { toastAlerts } from "../../helpers/toastAlerts";
 import { UserModel } from "../../models/UserModel";
 import { userService } from "../../services/UserService";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { setLoader } from "../../app/loaderSlice";
 import { binanceService } from "../../services/BinanceService";
 
@@ -18,17 +18,9 @@ function Login(): JSX.Element {
     try {
       const results = await userService.Login(user);
       if (results.status === 200) {
-        // dispatch(setLoader(true));
         dispatch(loginRedux(results.data));
-        // binanceService.getFutureTradesFromLastTime().then((res) => {
-        // dispatch(setLoader(false));
-        // if (res.status === 200) {
-        toastAlerts.toastSuccess("good");
+        toastAlerts.toastSuccess("Login Successfull");
         Navigate("/");
-        // } else {
-        // toastAlerts.toastError(res.data);
-        // }
-        // });
       }
     } catch (e: any) {
       console.log(e);
@@ -53,6 +45,7 @@ function Login(): JSX.Element {
           </div>
           <button>Submit</button>
         </form>
+        <NavLink to={'/registerpage'}>Dont have an account</NavLink>
       </div>
     </div>
   );

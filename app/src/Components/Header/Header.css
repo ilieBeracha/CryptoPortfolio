@@ -22,7 +22,7 @@
 .HeaderNav {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
 }
 
 .HeaderNav a {
@@ -36,6 +36,11 @@
 
 .HeaderNav a:hover {
   color: #333;
+}
+
+.HeaderAuth{
+  display: flex;
+  gap: 10px;
 }
 
 .HeaderAuth button {

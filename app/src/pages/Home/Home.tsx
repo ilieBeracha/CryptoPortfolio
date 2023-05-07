@@ -8,6 +8,7 @@ import Loader from "../../Components/Loader/Loader";
 function Home(): JSX.Element {
   const loaderSlice = useSelector((state: any) => state.loader);
 
+
   return (
     <div className="Home">
       {loaderSlice ? (

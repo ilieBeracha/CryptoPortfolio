@@ -7,17 +7,16 @@ function Header(): JSX.Element {
       <div className="HeaderTitle">
         <h2>CryptoPortfolio</h2>
       </div>
-
+      {/* 
       <nav className="HeaderNav">
         <a href="#">Home</a>
         <a href="#">Prices</a>
         <a href="#">Blog</a>
-        {/* <a href="#">LOG IN</a> */}
-        <NavLink to={'/loginpage'}>Login</NavLink>
-      </nav>
+      </nav> */}
 
       <div className="HeaderAuth">
-        <NavLink to={'/registerpage'}>Register</NavLink>
+        <NavLink to={"/loginpage"}>Login</NavLink>
+        <NavLink to={"/registerpage"}>Register</NavLink>
       </div>
     </header>
   );

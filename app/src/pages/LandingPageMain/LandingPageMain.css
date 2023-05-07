@@ -11,12 +11,20 @@
 }
 
 .LandingPageMainOurFeatures {
-  height: 100vh;
+  height: 80vh;
   background-color: var(--colorMain);
+  /* background-color: white; */
+  /* background-image: radial-gradient(#8F7CFF 10%, transparent 5%);
+  background-size: 50px 50px;
+  backdrop-filter: blur(100px); */
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+  
 
 .LandingPageWelcomeSentance {
   margin-right: 500px;
@@ -29,6 +37,10 @@
   /* align-items: center; */
   gap: 20px;
 }
+
+/* .LandingPageWelcomeImage img{
+    width: 40%;
+} */
 
 .LandingPageWelcomeSentance button {
   margin-top: 20px;
@@ -57,84 +69,57 @@
   align-items: center;
 }
 
-.LandingPageMainOurFeaturesRow1,
-.LandingPageMainOurFeaturesRow2,
-.LandingPageMainOurFeaturesRow3 {
-  width: 70%;
-  height: 30%;
-  gap: 20px;
-  font-size: 25px;
-  text-align: center;
-}
-
-.LandingPageMainOurFeaturesRow1,
-.LandingPageMainOurFeaturesRow2 {
-  /* background-color: aquamarine; */
-  display: flex;
-  justify-content: center;
-  align-items: end;
-}
-
-.LandingPageMainOurFeaturesRow1 .LandingPageMainOurFeaturesRow1F1,
-.LandingPageMainOurFeaturesRow1 .LandingPageMainOurFeaturesRow1F2,
-.LandingPageMainOurFeaturesRow2 .LandingPageMainOurFeaturesRow2F1,
-.LandingPageMainOurFeaturesRow2 .LandingPageMainOurFeaturesRow2F2 {
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 10px;
-  transition: all 0.5s ease;
-}
-
-.LandingPageMainOurFeaturesRow1 .LandingPageMainOurFeaturesRow1F1:hover,
-.LandingPageMainOurFeaturesRow1 .LandingPageMainOurFeaturesRow1F2:hover,
-.LandingPageMainOurFeaturesRow2 .LandingPageMainOurFeaturesRow2F1:hover,
-.LandingPageMainOurFeaturesRow2 .LandingPageMainOurFeaturesRow2F2:hover{
-    background-color: var(--color1);
-    color: white;
-    position: relative;
-    bottom: 10px;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
-
-}
-
-.LandingPageMainOurFeaturesRow1 .LandingPageMainOurFeaturesRow1F1 {
-  width: 300px;
-  height: 300px;
-}
-.LandingPageMainOurFeaturesRow1 .LandingPageMainOurFeaturesRow1F2 {
-  width: 500px;
-  height: 200px;
-}
-
-.LandingPageMainOurFeaturesRow2 .LandingPageMainOurFeaturesRow2F1 {
-  width: 600px;
-  height: 200px;
-}
-.LandingPageMainOurFeaturesRow2 .LandingPageMainOurFeaturesRow2F2 {
-  width: 300px;
-  height: 200px;
-}
-
-.LandingPageMainOurFeaturesRow3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .LandingPageMainOurFeaturesTitle{
-    width: 30%;
+    width: 100%;
+    height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    padding-top: 10px;
 }
 
 .LandingPageMainOurFeaturesTitle h3 {
   font-size: 28px;
   box-sizing: border-box;
   padding-left: 20px;
+}
+
+.LandingPageMainOurFeaturesDiv{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.LandingPageMainOurFeature{
+    width: 20%;
+    height: 80%;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.LandingPageMainOurFeatureHeader{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.LandingPageMainOurFeatureContent{
+    width: 100%;
+    /* height: max-content; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px;
 }
