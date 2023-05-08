@@ -1,7 +1,6 @@
 import Header from "../../Components/Header/Header";
 import "./LandingPageMain.css";
-import wallet from "../../assets/images/wallet.png";
-import { TypeAnimation } from "react-type-animation";
+import wallet from "../../assets/images/Wallet-bro.png";
 import { useNavigate } from "react-router-dom";
 
 function LandingPageMain(): JSX.Element {
@@ -22,21 +21,14 @@ function LandingPageMain(): JSX.Element {
           </div>
           <button onClick={()=> Navigate('/registerpage')}>Start now</button>
         </div>
+
+        <div className="LandingPageWelcomeImage">
+            <img src={wallet} alt="" />
+        </div>
       </div>
       <div className="LandingPageMainOurFeatures">
         <div className="LandingPageMainOurFeaturesTitle">
-          <TypeAnimation
-            sequence={[
-              "Make your choices with us...",
-              () => {
-                console.log("Sequence completed"); 
-              },
-            ]}
-            wrapper="h3"
-            cursor={true}
-            repeat={Infinity}
-          />
-          {/* <h3>Make your choices with us...</h3> */}
+          <h3>Make your choices with us...</h3>
         </div>
 
         <div className="LandingPageMainOurFeaturesDiv">
